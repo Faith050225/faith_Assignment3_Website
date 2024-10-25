@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fee Calculator - Empowering the Nation</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+   
+  </style>
+</head>
+<body>
+  
+    <header>
+        <img src="_images/WhatsApp Image 2024-09-14 at 11.58.55_26af5a36.jpg"  width="150" height="150"      alt="Empowering the Nation Logo" class="logo">
+      
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html"class="active">About Us</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="calculate_fee.html">Calculate Fee</a></li>
+            </ul>
+        </nav> 
+    </header> 
+<div class="container">
+  <h1>Course Fee Calculator</h1>
+
+  <label for="courseType">Select Course Type:</label>
+  <select id="courseType">
+    <option value="0">Select a Course</option>
+    <option value="5000">Six-Month Program (R5000)</option>
+    <option value="2500">Six-Week Program (R2500)</option>
+  </select>
+
+  <label for="numCourses">Number of Courses:</label>
+  <input type="number" id="numCourses" placeholder="Enter number of courses" min="1" />
+
+  <button onclick="calculateFee()">Calculate Total Fee</button>
+
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+  const VAT_RATE = 0.15; // 15% VAT
+
+  function calculateFee() {
+    const courseType = parseFloat(document.getElementById('courseType').value);
+    const numCourses = parseInt(document.getElementById('numCourses').value);
+
+    if (isNaN(courseType) || isNaN(numCourses) || numCourses <= 0) {
+      alert('Please select a course and enter a valid number of courses.');
+      return;
+    }
+
+    const subtotal = courseType * numCourses;
+    const vat = subtotal * VAT_RATE;
+    const total = subtotal + vat;
+
+    document.getElementById('result').innerHTML = `
+      <p>Subtotal: R${subtotal.toFixed(2)}</p>
+      <p>VAT (15%): R${vat.toFixed(2)}</p>
+      <p><strong>Total: R${total.toFixed(2)}</strong></p>
+    `;
+  }
+</script>
+
+</body>
+</html>
